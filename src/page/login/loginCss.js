@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   titleWrapper: {
-    marginTop: 120,
+    marginTop: 80,
   },
   title: {
     textAlign: 'center',
