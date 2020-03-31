@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   titleWrapper: {
-    marginTop: 100,
+    marginTop: 60,
   },
   title: {
     textAlign: 'center',
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   inputWrapper: {
     width: '100%',
-    paddingBottom: 10,
+    // paddingBottom: 10,
     borderBottomWidth: 0.5,
     borderBottomColor: 'black',
   },

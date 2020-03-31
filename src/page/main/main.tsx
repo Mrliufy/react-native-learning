@@ -1,5 +1,11 @@
 import React, {Props} from 'react';
-import {View, Text, TextInput, TouchableHighlight} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  ScrollView,
+} from 'react-native';
 import {styles} from './mainCss';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -43,7 +49,7 @@ const DetailItem: React.FC = (Props: Props) => {
 
 const Main: React.FC = (props: Props) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.headerWrapper}>
         <View style={styles.iconWrapper}>
           <FontAwesomeIcon size={22} icon={faBars} color={'#ffffff'} />
@@ -128,7 +134,7 @@ const Main: React.FC = (props: Props) => {
           </TouchableHighlight>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

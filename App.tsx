@@ -29,13 +29,13 @@ const MyComponent = (props: Props) => {
       <View style={styles.container}>
         <Text style={styles.textStyle}>{props.text}</Text>
       </View>
-      <Button
+      {/* <Button
         style={{display: 'none'}}
         title="Press me"
         onPress={() => {
           props.dispatch(updateText('Jerry'));
         }}
-      />
+      /> */}
       <View style={styles.btnWrapper}>
         <TouchableHighlight onPress={() => showComponet('Login')}>
           <Text>Login</Text>
@@ -50,16 +50,16 @@ const MyComponent = (props: Props) => {
           <Text>Detail</Text>
         </TouchableHighlight>
       </View>
-      <View style={{display: component === 'Login' ? '' : 'none'}}>
+      <View style={{display: component === 'Login' ? 'flex' : 'none'}}>
         <Login />
       </View>
-      <View style={{display: component === 'Registration' ? '' : 'none'}}>
+      <View style={{display: component === 'Registration' ? 'flex' : 'none'}}>
         <Registration />
       </View>
-      <View style={{display: component === 'Main' ? '' : 'none'}}>
+      <View style={{display: component === 'Main' ? 'flex' : 'none'}}>
         <Main />
       </View>
-      <View style={{display: component === 'Detail' ? '' : 'none'}}>
+      <View style={{display: component === 'Detail' ? 'flex' : 'none'}}>
         <Detail />
       </View>
     </View>
