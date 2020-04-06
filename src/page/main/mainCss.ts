@@ -44,23 +44,6 @@ export const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
   },
-  circleIconTextWrapper: {
-    // height: 100,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 20,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
-  },
-  circleIcon: {
-    padding: 0,
-    borderWidth: 0.5,
-    borderColor: 'black',
-    borderRadius: 25,
-  },
-  circleIconText: {
-    textAlign: 'center',
-  },
   space: {
     width: '100%',
     height: 10,
@@ -103,49 +86,5 @@ export const styles = StyleSheet.create({
   iconRowItem: {
     width: '48%',
     alignItems: 'center',
-  },
-  detailItemWrapper: {
-    width: '100%',
-    height: 160,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderWidth: 0.5,
-    borderColor: '#dddddd',
-    borderRadius: 4,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  detailIconPriceText: {
-    width: '100%',
-  },
-  brands: {
-    fontSize: 13,
-  },
-  priceWrapper: {
-    flexDirection: 'row',
-  },
-  priceNow: {
-    fontSize: 13,
-    fontWeight: 'bold',
-  },
-  priceOriginal: {
-    marginLeft: 5,
-    fontSize: 13,
-    textDecorationLine: 'line-through',
-    color: 'gray',
-  },
-  priceOff: {
-    marginLeft: 5,
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: 'rgb(58, 158, 201)',
   },
 });

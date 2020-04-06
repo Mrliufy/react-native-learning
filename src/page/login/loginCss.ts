@@ -6,16 +6,10 @@ export const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    paddingHorizontal: 30,
-  },
-  arrowWrapper: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginTop: 20,
+    paddingHorizontal: 40,
   },
   titleWrapper: {
-    marginTop: 60,
+    marginTop: 80,
   },
   title: {
     textAlign: 'center',
@@ -25,11 +19,11 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '100%',
-    marginTop: 40,
+    marginTop: 60,
   },
   inputWrapper: {
     width: '100%',
-    // paddingBottom: 10,
+    paddingBottom: 10,
     borderBottomWidth: 0.5,
     borderBottomColor: 'black',
   },
@@ -40,27 +34,37 @@ export const styles = StyleSheet.create({
   distance: {
     marginTop: 30,
   },
+  forgotPWrapper: {
+    width: '100%',
+    marginTop: 20,
+  },
+  forgotPW: {
+    textAlign: 'right',
+    fontWeight: '500',
+    fontSize: 16,
+    color: 'rgb(113, 134, 236)',
+  },
   btnWrapper: {
     width: '100%',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 20,
     backgroundColor: 'rgb(46, 140, 191)',
   },
-  btnSignUp: {
+  btnSignIn: {
     width: '100%',
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  btnSignUpText: {
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: '500',
-  },
   textWrapper: {
     width: '100%',
     alignItems: 'center',
     marginTop: 20,
+  },
+  btnSignInText: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: '500',
   },
   signUpText: {
     fontWeight: '500',
