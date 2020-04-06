@@ -1,4 +1,4 @@
-import React, {Props} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -13,41 +13,11 @@ import {
   faShoppingCart,
   faSearch,
 } from '@fortawesome/free-solid-svg-icons';
-// import {} from '@fortawesome/free-brands-svg-icons';
 import Logo from '../../resource/images/logo.svg';
+import CircleIcon from '../../components/CircleIcon';
+import DetailItem from '../../components/DetailItem';
 
-const CircleIcon: React.FC = (Props: Porps) => {
-  return (
-    <View style={styles.circleIconTextWrapper}>
-      <Props.tag
-        style={styles.circleIcon}
-        width={Props.width}
-        height={Props.height}
-      />
-      <Text style={styles.circleIconText}>{Props.text}</Text>
-    </View>
-  );
-};
-
-const DetailItem: React.FC = (Props: Props) => {
-  return (
-    <View style={styles.detailItemWrapper}>
-      <View>
-        <Props.tag width={Props.width} height={Props.height} />
-      </View>
-      <View style={styles.detailIconPriceText}>
-        <Text style={styles.brands}>{Props.brands}</Text>
-        <View style={styles.priceWrapper}>
-          <Text style={styles.priceNow}>{Props.price}</Text>
-          <Text style={styles.priceOriginal}>{Props.priceOriginal}</Text>
-          <Text style={styles.priceOff}>{`${Props.priceOff}% Off`}</Text>
-        </View>
-      </View>
-    </View>
-  );
-};
-
-const Main: React.FC = (props: Props) => {
+const Main: React.FC = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerWrapper}>

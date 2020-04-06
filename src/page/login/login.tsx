@@ -1,12 +1,19 @@
-import React, {Props} from 'react';
-import {View, Text, TextInput, TouchableHighlight} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  Keyboard,
+  TouchableOpacity,
+} from 'react-native';
 import {styles} from './loginCss';
 import Reactotron from 'reactotron-react-native';
 // import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 // import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 // import Logo from '../../resource/images/logo.svg';
 
-const Login: React.FC = (Props: Props) => {
+const Login: React.FC = () => {
   /**
    * login
    */
@@ -41,7 +48,10 @@ const Login: React.FC = (Props: Props) => {
     );
   }
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={1}
+      onPress={Keyboard.dismiss}>
       {/* <Text style={styles.textColor}>Login</Text> */}
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>Ecommerce</Text>
@@ -53,6 +63,7 @@ const Login: React.FC = (Props: Props) => {
             style={styles.textInput}
             placeholder="Email Address"
             placeholderTextColor="rgb(116, 116, 116)"
+            onSubmitEditing={Keyboard.dismiss}
           />
         </View>
         <View style={[styles.inputWrapper, styles.distance]}>
@@ -67,11 +78,7 @@ const Login: React.FC = (Props: Props) => {
         <Text style={styles.forgotPW}>Forgot Password ?</Text>
       </View>
       <View style={styles.btnWrapper}>
-        <TouchableHighlight
-          style={styles.btnSignIn}
-          onPress={() => {
-            login();
-          }}>
+        <TouchableHighlight style={styles.btnSignIn} onPress={login}>
           <Text style={styles.btnSignInText}>SIGN IN</Text>
         </TouchableHighlight>
       </View>
@@ -86,7 +93,7 @@ const Login: React.FC = (Props: Props) => {
       <View>
         <Logo width={120} height={60} />
       </View> */}
-    </View>
+    </TouchableOpacity>
   );
 };
 

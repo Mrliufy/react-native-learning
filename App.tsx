@@ -25,10 +25,10 @@ const MyComponent = (props: Props) => {
     setComponent(params);
   }
   return (
-    <View>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Text style={styles.textStyle}>{props.text}</Text>
-      </View>
+      </View> */}
       {/* <Button
         style={{display: 'none'}}
         title="Press me"
@@ -50,16 +50,22 @@ const MyComponent = (props: Props) => {
           <Text>Detail</Text>
         </TouchableHighlight>
       </View>
-      <View style={{display: component === 'Login' ? 'flex' : 'none'}}>
+      <View
+        style={{display: component === 'Login' ? 'flex' : 'none', flex: 12}}>
         <Login />
       </View>
-      <View style={{display: component === 'Registration' ? 'flex' : 'none'}}>
+      <View
+        style={{
+          display: component === 'Registration' ? 'flex' : 'none',
+          flex: 12,
+        }}>
         <Registration />
       </View>
-      <View style={{display: component === 'Main' ? 'flex' : 'none'}}>
+      <View style={{display: component === 'Main' ? 'flex' : 'none', flex: 12}}>
         <Main />
       </View>
-      <View style={{display: component === 'Detail' ? 'flex' : 'none'}}>
+      <View
+        style={{display: component === 'Detail' ? 'flex' : 'none', flex: 12}}>
         <Detail />
       </View>
     </View>
@@ -68,17 +74,17 @@ const MyComponent = (props: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'none',
-    marginTop: 60,
-    alignItems: 'center',
+    flex: 1,
   },
   textStyle: {
     fontSize: 16,
     color: 'red',
   },
   btnWrapper: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginTop: 20,
   },
 });
 
