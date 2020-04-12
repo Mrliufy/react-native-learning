@@ -1,5 +1,6 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, StyleSheet, BackHandler} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 type Props = {
   tag: any;
   width: Number;
@@ -11,6 +12,20 @@ type Props = {
 };
 
 const DetailItem = (props: Props) => {
+  const navigation = useNavigation();
+  /**
+   * for android back
+   */
+  useEffect(() => {
+    const goback = function() {
+      navigation.goBack();
+    };
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      goback();
+      return true;
+    });
+    return BackHandler.removeEventListener('hardwareBackPress', () => {});
+  }, [navigation]);
   return (
     <View style={styles.detailItemWrapper}>
       <View>

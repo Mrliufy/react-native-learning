@@ -71,4 +71,13 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: 'rgb(113, 134, 236)',
   },
+  loadingWrapper: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f0f0f0',
+    opacity: 0.5,
+  },
 });

@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, Button, TouchableHighlight} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  TouchableHighlight,
+} from 'react-native';
 
 import './declarations.d.ts';
 
@@ -11,64 +17,56 @@ import Login from './src/page/login/login';
 import Main from './src/page/main/main';
 import Detail from './src/page/detail/detail';
 import Registration from './src/page/registration/registration';
+import SideMenu from './src/page/sideMenu/sideMenu';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 type Props = PropsFromRedux;
+const Stack = createStackNavigator();
 
-const MyComponent = (props: Props) => {
-  useEffect(() => {
-    if (Reactotron.log) {
-      Reactotron.log('props: ' + props.text);
-    }
-  }, [props]);
-  const [component, setComponent] = useState('Login');
-  function showComponet(params: String) {
-    setComponent(params);
-  }
+function ScreenNavigators() {
   return (
-    <View style={styles.container}>
-      {/* <View style={styles.container}>
-        <Text style={styles.textStyle}>{props.text}</Text>
-      </View> */}
-      {/* <Button
-        style={{display: 'none'}}
-        title="Press me"
-        onPress={() => {
-          props.dispatch(updateText('Jerry'));
-        }}
-      /> */}
-      <View style={styles.btnWrapper}>
-        <TouchableHighlight onPress={() => showComponet('Login')}>
-          <Text>Login</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => showComponet('Registration')}>
-          <Text>Registration</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => showComponet('Main')}>
-          <Text>Main</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => showComponet('Detail')}>
-          <Text>Detail</Text>
-        </TouchableHighlight>
-      </View>
-      <View
-        style={{display: component === 'Login' ? 'flex' : 'none', flex: 12}}>
-        <Login />
-      </View>
-      <View
-        style={{
-          display: component === 'Registration' ? 'flex' : 'none',
-          flex: 12,
-        }}>
-        <Registration />
-      </View>
-      <View style={{display: component === 'Main' ? 'flex' : 'none', flex: 12}}>
-        <Main />
-      </View>
-      <View
-        style={{display: component === 'Detail' ? 'flex' : 'none', flex: 12}}>
-        <Detail />
-      </View>
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        options={{title: 'Login', header: () => null}}
+        component={Login}
+      />
+      <Stack.Screen
+        name="Registration"
+        options={{title: 'Sign UP'}}
+        component={Registration}
+      />
+      <Stack.Screen
+        name="Main"
+        options={{title: 'Product List', header: () => null}}
+        component={Main}
+      />
+      <Stack.Screen
+        name="Detail"
+        options={{title: 'Product detail', header: () => null}}
+        component={Detail}
+      />
+    </Stack.Navigator>
+  );
+}
+
+const MyComponent = props => {
+  const {loading} = props;
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator drawerPosition={'left'} drawerContent={SideMenu}>
+        <Drawer.Screen name="ScreenNavigators" component={ScreenNavigators} />
+      </Drawer.Navigator>
+      {loading === true ? (
+        <View style={styles.loadingWrapper}>
+          <ActivityIndicator size="large" color="#0000ff" animating={true} />
+        </View>
+      ) : null}
+    </NavigationContainer>
   );
 };
 
@@ -86,10 +84,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 20,
   },
+  loadingWrapper: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(256, 256, 256, .6)',
+  },
 });
 
 const mapStateToProps = (state: any) => ({
   text: state.demo.text,
+  loading: state.login.loading,
 });
 const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
