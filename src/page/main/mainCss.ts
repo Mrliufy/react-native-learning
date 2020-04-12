@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 0,
+    flex: 1,
   },
   headerWrapper: {
     width: '100%',
@@ -50,6 +51,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgb(235, 235, 235)',
   },
   detailWrapper: {
+    flex: 1,
     width: '100%',
     paddingHorizontal: 20,
   },

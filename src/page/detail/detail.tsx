@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faArrowLeft,
@@ -9,12 +9,22 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {styles} from './detailCss';
 import Logo from '../../resource/images/logo.svg';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
-const Detail: React.FC = (Props: Props) => {
+const Detail: React.FC = () => {
+  const route = useRoute();
+  const navigation = useNavigation();
+  const param = route.params && route.params.detail;
+
+  function goback(): void {
+    navigation.goBack();
+  }
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerWrapper}>
-        <FontAwesomeIcon size={22} color={'#ffffff'} icon={faArrowLeft} />
+        <TouchableOpacity onPress={goback}>
+          <FontAwesomeIcon size={22} color={'#ffffff'} icon={faArrowLeft} />
+        </TouchableOpacity>
         <View style={styles.iconRightWrapper}>
           <FontAwesomeIcon size={22} color={'#ffffff'} icon={faSearch} />
           <FontAwesomeIcon size={22} color={'#ffffff'} icon={faShoppingCart} />
@@ -26,7 +36,7 @@ const Detail: React.FC = (Props: Props) => {
             <Logo width={160} height={160} />
           </View>
           <View style={styles.btnWrapper}>
-            <Text style={styles.btnText}>Instock</Text>
+            <Text style={styles.btnText}>{'Instock' + param}</Text>
           </View>
           <View style={styles.circle} />
         </View>
