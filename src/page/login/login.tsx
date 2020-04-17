@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
 import {styles} from './loginCss';
 import Reactotron from 'reactotron-react-native';
 import {useNavigation, StackRouter} from '@react-navigation/native';
-import {connect, ConnectedProps} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setNavigation, clearSetting} from '../../store/login/saga';
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -20,9 +20,11 @@ import {
   fetchData,
 } from '../../store/login/action';
 
-const Login = (props: PropsFromRedux) => {
+const Login = () => {
   const navitation = useNavigation();
-  const {dispatch, loading} = props;
+  const state = useSelector(state => state.login);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setNavigation(navitation);
     return clearSetting;
@@ -32,8 +34,7 @@ const Login = (props: PropsFromRedux) => {
    * login
    */
   function login() {
-    // navitation.navigate('Main');
-    dispatch(fetchData(navitation));
+    dispatch(fetchData());
   }
 
   function signUp() {
@@ -51,7 +52,7 @@ const Login = (props: PropsFromRedux) => {
   return (
     <TouchableOpacity activeOpacity={1} onPress={Keyboard.dismiss}>
       <LinearGradient
-        style={[styles.container, {width: '100%', height: '100%'}]}
+        style={[styles.container, styles.wholeDimension]}
         start={{x: 0, y: 0}}
         end={{x: 0, y: 1}}
         colors={[
@@ -69,8 +70,8 @@ const Login = (props: PropsFromRedux) => {
               style={styles.textInput}
               placeholder="Email Address"
               placeholderTextColor="rgb(116, 116, 116)"
-              onChangeText={text => onChangeAccount(text)}
-              value={props.account}
+              onChangeText={onChangeAccount}
+              value={state.account}
             />
           </View>
           <View style={[styles.inputWrapper, styles.distance]}>
@@ -79,8 +80,8 @@ const Login = (props: PropsFromRedux) => {
               placeholder="Password"
               secureTextEntry
               placeholderTextColor="rgb(116, 116, 116)"
-              value={props.password}
-              onChangeText={text => onChangePassord(text)}
+              value={state.password}
+              onChangeText={onChangePassord}
             />
           </View>
         </View>
@@ -102,11 +103,4 @@ const Login = (props: PropsFromRedux) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  account: state.login.account,
-  password: state.login.password,
-  loading: state.login.loading,
-});
-const connector = connect(mapStateToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-export default connector(Login);
+export default Login;

@@ -22,28 +22,21 @@ import Logo from '../../resource/images/logo.svg';
 import CircleIcon from '../../components/CircleIcon';
 import DetailItem from '../../components/DetailItem';
 import {useNavigation} from '@react-navigation/native';
-import {connect, ConnectedProps} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {fetchProductList} from '../../store/main/action';
 
-const Main = (props: PropsFromRedux) => {
+const Main = () => {
   const navigation = useNavigation();
-  const {list, refreshing} = props;
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.main);
+  const {list, refreshing} = state;
 
   function showMenu() {
     navigation.openDrawer();
   }
 
   function refreshData() {
-    props.dispatch(fetchProductList());
-  }
-
-  function getItem(data: any, index: Number): Object {
-    return {
-      id: Math.random()
-        .toString(12)
-        .substring(0),
-      title: `Item ${index + 1}`,
-    };
+    dispatch(fetchProductList());
   }
 
   return (
@@ -238,10 +231,4 @@ const Main = (props: PropsFromRedux) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  list: state.main.list,
-  refreshing: state.main.refreshing,
-});
-const connector = connect(mapStateToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-export default connector(Main);
+export default Main;

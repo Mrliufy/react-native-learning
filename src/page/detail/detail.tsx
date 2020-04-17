@@ -16,7 +16,7 @@ const Detail: React.FC = () => {
   const navigation = useNavigation();
   const param = route.params && route.params.detail;
 
-  function goback(): void {
+  function goback() {
     navigation.goBack();
   }
   return (

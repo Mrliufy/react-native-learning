@@ -11,7 +11,7 @@ import './declarations.d.ts';
 
 import Reactotron from 'reactotron-react-native';
 
-import {connect, ConnectedProps} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {updateText} from './src/store/demo/action';
 import Login from './src/page/login/login';
 import Main from './src/page/main/main';
@@ -24,7 +24,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
-type Props = PropsFromRedux;
 const Stack = createStackNavigator();
 
 function ScreenNavigators() {
@@ -37,7 +36,7 @@ function ScreenNavigators() {
       />
       <Stack.Screen
         name="Registration"
-        options={{title: 'Sign UP'}}
+        options={{title: 'Sign UP', header: () => null}}
         component={Registration}
       />
       <Stack.Screen
@@ -54,8 +53,9 @@ function ScreenNavigators() {
   );
 }
 
-const MyComponent = props => {
-  const {loading} = props;
+const MyComponent = () => {
+  const state = useSelector(state => state.login);
+  const {loading} = state;
   return (
     <NavigationContainer>
       <Drawer.Navigator drawerPosition={'left'} drawerContent={SideMenu}>
@@ -96,10 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: any) => ({
-  text: state.demo.text,
-  loading: state.login.loading,
-});
-const connector = connect(mapStateToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-export default connector(MyComponent);
+export default MyComponent;
