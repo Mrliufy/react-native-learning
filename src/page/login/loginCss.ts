@@ -80,4 +80,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     opacity: 0.5,
   },
+  wholeDimension: {
+    width: '100%',
+    height: '100%',
+  },
 });

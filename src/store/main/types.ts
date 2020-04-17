@@ -21,4 +21,4 @@ export interface MainState {
   refreshing: boolean;
 }
 
-export type MainActionTypes = UpdateProductList | UpdateRefreshStatus;
+export type MainActionTypes = UpdateProductList | UpdateRefreshStatu;
