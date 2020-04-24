@@ -32,7 +32,7 @@ const Login = () => {
   const [valPasswordMss, setValPasswordMss] = useState('');
   const [popupIndex, setPopupIndex] = useState(-1);
   const dispatch = useDispatch();
-  const durationTime = useRef(500).current;
+  const durationTime = useRef(10).current;
 
   let commaDisOne = useRef(new Animated.Value(26)).current;
   let commaDisTwo = useRef(new Animated.Value(26)).current;
@@ -61,7 +61,7 @@ const Login = () => {
     commaDisThree.setValue(26);
     Animated.sequence([
       Animated.timing(commaDisOne, {
-        toValue: 10,
+        toValue: 15,
         duration: durationTime,
       }),
       Animated.parallel([
@@ -71,7 +71,7 @@ const Login = () => {
         }),
         Animated.sequence([
           Animated.timing(commaDisTwo, {
-            toValue: 10,
+            toValue: 15,
             duration: durationTime,
           }),
           Animated.parallel([
@@ -81,7 +81,7 @@ const Login = () => {
             }),
             Animated.sequence([
               Animated.timing(commaDisThree, {
-                toValue: 10,
+                toValue: 15,
                 duration: durationTime,
               }),
               Animated.timing(commaDisThree, {
@@ -119,12 +119,12 @@ const Login = () => {
     Animated.sequence([
       Animated.timing(closeLeftWidth, {
         toValue: 25,
-        duration: 20,
+        duration: 200,
         // useNativeDriver: true,
       }),
       Animated.timing(closeRightWidth, {
         toValue: 25,
-        duration: 20,
+        duration: 200,
         // useNativeDriver: true,
       }),
       Animated.timing(failedTipsOpa, {
@@ -142,24 +142,24 @@ const Login = () => {
       Animated.sequence([
         Animated.timing(closeShakeVal, {
           toValue: 1.0,
-          duration: 50,
+          duration: 25,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
         Animated.timing(closeShakeVal, {
           toValue: -1.0,
-          duration: 100,
+          duration: 50,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
         Animated.timing(closeShakeVal, {
           toValue: 0.0,
-          duration: 50,
+          duration: 25,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
       ]),
-      {iterations: 2},
+      {iterations: 3},
     ).start(() =>
       setTimeout(() => {
         faildBtnShink();
