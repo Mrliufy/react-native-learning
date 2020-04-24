@@ -55,6 +55,7 @@ export const styles = StyleSheet.create({
   },
   btnSignIn: {
     width: '100%',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
