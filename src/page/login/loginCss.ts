@@ -32,11 +32,11 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
   },
   distance: {
-    marginTop: 30,
+    marginTop: 10,
   },
   forgotPWrapper: {
     width: '100%',
-    marginTop: 20,
+    marginTop: 5,
   },
   forgotPW: {
     textAlign: 'right',
@@ -46,13 +46,15 @@ export const styles = StyleSheet.create({
   },
   btnWrapper: {
     width: '100%',
+    height: 60,
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 20,
+    borderRadius: 8,
     backgroundColor: 'rgb(46, 140, 191)',
   },
   btnSignIn: {
     width: '100%',
-    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -83,5 +85,74 @@ export const styles = StyleSheet.create({
   wholeDimension: {
     width: '100%',
     height: '100%',
+  },
+  textValidWrapper: {
+    marginTop: 10,
+  },
+  textValidation: {
+    fontSize: 16,
+    color: 'red',
+  },
+  animationTwo: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  commaWrapper: {
+    position: 'relative',
+    width: 6,
+  },
+  comma: {
+    width: 6,
+    height: 6,
+    position: 'absolute',
+    top: 26,
+    zIndex: 99,
+    borderRadius: 3,
+    backgroundColor: '#fff',
+  },
+  commaSpace: {
+    marginLeft: 12,
+  },
+  loginFailedAni: {
+    position: 'relative',
+    backgroundColor: 'rgb(230, 170, 181)',
+  },
+  failTip: {
+    fontWeight: '600',
+    fontSize: 22,
+    color: '#fff',
+  },
+  closeWrapper: {
+    position: 'absolute',
+    right: 10,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgb(217, 98, 112)',
+    borderRadius: 6,
+  },
+  closeLeft: {
+    width: 2.5,
+    height: 25,
+    backgroundColor: '#fff',
+    transform: [{rotate: '45deg'}],
+  },
+  closeRight: {
+    position: 'absolute',
+    width: 2.5,
+    height: 25,
+    backgroundColor: '#fff',
+    transform: [{rotate: '-45deg'}],
+  },
+  popupWrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    opacity: 0,
   },
 });

@@ -3,6 +3,7 @@ import {FETCH_PRODUCT_LIST_DATA} from './types';
 import {updateProductList, UpdateRefreshStatus} from './action';
 import {updateLoading} from '../login/action';
 import API from '../../utils/api';
+import {delay} from '../login/saga';
 
 export function* fetchData() {
   try {
@@ -19,6 +20,7 @@ export function* fetchData() {
     if (resources.length > 0) {
       yield put(updateProductList(resources));
     }
+    yield delay(1500);
     yield put(updateLoading(false));
     yield put(UpdateRefreshStatus(false));
   } catch (error) {

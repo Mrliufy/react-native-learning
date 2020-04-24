@@ -3,6 +3,7 @@ export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_TOKEN = 'UPDATE_TOKEN';
 export const FETCH_DATA = 'FETCH_DATA';
 export const UPDATE_LOADING = 'UPDATE_LOADING';
+export const UPDATE_LOADING_STATUS = 'UPDATE_LOADING_STATUS';
 
 export interface UpdateAccountAction {
   type: typeof UPDATE_ACCOUNT;
@@ -29,15 +30,22 @@ export interface UpdateLoadingAction {
   payload: boolean;
 }
 
+export interface UpdateLoginStatusAction {
+  type: typeof UPDATE_LOADING_STATUS;
+  payload: string;
+}
+
 export interface LoginState {
   account: string;
   password: string;
   token: string;
   loading: boolean;
+  loginStatus: String;
 }
 
 export type LoginActionTypes =
   | UpdateAccountAction
   | UpdatePasswordAction
   | UpdateTokenAction
-  | UpdateLoadingAction;
+  | UpdateLoadingAction
+  | UpdateLoginStatusAction;

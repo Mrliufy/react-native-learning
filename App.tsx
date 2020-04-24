@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   ActivityIndicator,
   TouchableHighlight,
+  Animated,
 } from 'react-native';
 
 import './declarations.d.ts';
@@ -55,7 +56,22 @@ function ScreenNavigators() {
 
 const MyComponent = () => {
   const state = useSelector(state => state.login);
+  const loadingStatus = useRef('stoped');
   const {loading} = state;
+
+  const indicatorTop = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (loading && loadingStatus.current === 'stoped') {
+      loadingStatus.current = 'started';
+      Animated.timing(indicatorTop, {
+        toValue: 50,
+        duration: 1000,
+      }).start();
+    } else {
+      loadingStatus.current = 'stoped';
+      indicatorTop.setValue(0);
+    }
+  }, [indicatorTop, loading]);
   return (
     <NavigationContainer>
       <Drawer.Navigator drawerPosition={'left'} drawerContent={SideMenu}>
@@ -63,7 +79,18 @@ const MyComponent = () => {
       </Drawer.Navigator>
       {loading === true ? (
         <View style={styles.loadingWrapper}>
-          <ActivityIndicator size="large" color="#0000ff" animating={true} />
+          <Animated.View
+            style={[
+              styles.loadingAniWrapper,
+              {
+                top: indicatorTop.interpolate({
+                  inputRange: [0, 50],
+                  outputRange: ['-40%', '0%'],
+                }),
+              },
+            ]}>
+            <ActivityIndicator size="large" color="#0000ff" animating={true} />
+          </Animated.View>
         </View>
       ) : null}
     </NavigationContainer>
@@ -90,9 +117,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    backgroundColor: 'rgba(256, 256, 256, .6)',
+  },
+  loadingAniWrapper: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(256, 256, 256, .6)',
   },
 });
 

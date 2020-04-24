@@ -3,6 +3,7 @@ import {
   UPDATE_PASSWORD,
   UPDATE_TOKEN,
   UPDATE_LOADING,
+  UPDATE_LOADING_STATUS,
   LoginState,
   LoginActionTypes,
 } from './types';
@@ -13,6 +14,7 @@ export const initailState: LoginState = {
   password: '1qaz@WSX',
   token: '',
   loading: false,
+  loginStatus: '',
 };
 
 export function loginReducer(
@@ -40,6 +42,8 @@ export function loginReducer(
         ...state,
         loading: action.payload,
       };
+    case UPDATE_LOADING_STATUS:
+      return {...state, loginStatus: action.payload};
     default:
       return state;
   }
