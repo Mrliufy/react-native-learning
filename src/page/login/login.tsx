@@ -32,7 +32,7 @@ const Login = () => {
   const [valPasswordMss, setValPasswordMss] = useState('');
   const [popupIndex, setPopupIndex] = useState(-1);
   const dispatch = useDispatch();
-  const durationTime = useRef(10).current;
+  const durationTime = useRef(300).current;
 
   let commaDisOne = useRef(new Animated.Value(26)).current;
   let commaDisTwo = useRef(new Animated.Value(26)).current;
