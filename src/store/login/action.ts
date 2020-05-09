@@ -5,11 +5,13 @@ import {
   UPDATE_LOADING,
   UPDATE_LOADING_STATUS,
   FETCH_DATA,
+  GET_LOGIN_INFO,
   UpdateAccountAction,
   UpdatePasswordAction,
   UpdateTokenAction,
   UpdateLoadingAction,
   FetchDataAction,
+  GetLoginInFoAction,
   UpdateLoginStatusAction,
 } from './types';
 
@@ -52,5 +54,12 @@ export function fetchData(params?: any): FetchDataAction {
   return {
     type: FETCH_DATA,
     payload: params,
+  };
+}
+
+export function getLoginInfo(): GetLoginInFoAction {
+  return {
+    type: GET_LOGIN_INFO,
+    payload: null,
   };
 }

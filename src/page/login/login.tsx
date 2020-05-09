@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Animated,
   Easing,
+  Vibration,
 } from 'react-native';
 import {styles} from './loginCss';
 import Reactotron from 'reactotron-react-native';
@@ -187,6 +188,7 @@ const Login = () => {
       setTimeout(() => {
         dispatch(updateLoginstatus(''));
         setPopupIndex(99);
+        Vibration.vibrate(400, false);
         aniStatus.current = 'stop';
         btnWidth.setValue(100);
         failBtnWidth.setValue(0);

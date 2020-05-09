@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +7,10 @@ import {
   TouchableHighlight,
   Animated,
 } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import {useDispatch} from 'react-redux';
 
+import {getLoginInfo} from './src/store/login/action';
 import './declarations.d.ts';
 
 import Reactotron from 'reactotron-react-native';
@@ -22,6 +25,7 @@ import SideMenu from './src/page/sideMenu/sideMenu';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import PopUpTips from './src/components/popupTips';
 
 const Drawer = createDrawerNavigator();
 
@@ -55,11 +59,21 @@ function ScreenNavigators() {
 }
 
 const MyComponent = () => {
+  const dispatch = useDispatch();
   const state = useSelector(state => state.login);
   const loadingStatus = useRef('stoped');
   const {loading} = state;
+  const [networkStatus, setNetworkStatus] = useState(true);
 
   const indicatorTop = useRef(new Animated.Value(0)).current;
+
+  /**
+   * judge login status
+   */
+  useEffect(() => {
+    dispatch(getLoginInfo());
+  });
+
   useEffect(() => {
     if (loading && loadingStatus.current === 'stoped') {
       loadingStatus.current = 'started';
@@ -73,6 +87,32 @@ const MyComponent = () => {
       indicatorTop.setValue(0);
     }
   }, [indicatorTop, loading]);
+
+  const tipsCallback = useCallback(() => {
+    setNetworkStatus(true);
+  }, [setNetworkStatus]);
+
+  /**
+   * testing network connection
+   *
+   */
+
+  useEffect(() => {
+    NetInfo.fetch().then((state: object) => {
+      if (!state.isConnected) {
+        setNetworkStatus(false);
+      }
+    });
+    const unsubscribe = NetInfo.addEventListener((state: NetInfoState) => {
+      console.log('changed');
+      if (!state.isConnected) {
+        setNetworkStatus(false);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
     <NavigationContainer>
       <Drawer.Navigator drawerPosition={'left'} drawerContent={SideMenu}>
@@ -88,7 +128,7 @@ const MyComponent = () => {
                   {
                     translateY: indicatorTop.interpolate({
                       inputRange: [0, 50],
-                      outputRange: ['-40%', '0%'],
+                      outputRange: ['-300%', '0%'],
                     }),
                   },
                 ],
@@ -98,6 +138,15 @@ const MyComponent = () => {
           </Animated.View>
         </View>
       ) : null}
+      {networkStatus === true ? null : (
+        <PopUpTips
+          title="Net work"
+          content="Please check your network connection"
+          btnLeftText="Comfirm"
+          btnRtText="Cancle"
+          callback={tipsCallback}
+        />
+      )}
     </NavigationContainer>
   );
 };
