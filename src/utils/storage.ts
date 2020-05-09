@@ -11,6 +11,9 @@ export async function getItem(key: string) {
 
 export async function saveItem(key: string, value: any) {
   try {
+    if (!(value > '')) {
+      return;
+    }
     const val = await AsyncStorage.setItem(key, value);
     return val;
   } catch (error) {
