@@ -66,6 +66,7 @@ const MyComponent = () => {
       Animated.timing(indicatorTop, {
         toValue: 50,
         duration: 1000,
+        useNativeDriver: true,
       }).start();
     } else {
       loadingStatus.current = 'stoped';
@@ -83,10 +84,14 @@ const MyComponent = () => {
             style={[
               styles.loadingAniWrapper,
               {
-                top: indicatorTop.interpolate({
-                  inputRange: [0, 50],
-                  outputRange: ['-40%', '0%'],
-                }),
+                transform: [
+                  {
+                    translateY: indicatorTop.interpolate({
+                      inputRange: [0, 50],
+                      outputRange: ['-40%', '0%'],
+                    }),
+                  },
+                ],
               },
             ]}>
             <ActivityIndicator size="large" color="#0000ff" animating={true} />

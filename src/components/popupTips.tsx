@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
+import Modal from 'react-native-modal';
 
 interface Props {
   title?: string;
@@ -10,40 +11,43 @@ interface Props {
   btnRtText?: string;
   children?: React.ReactNode;
   callback: () => {};
+  visible: boolean;
 }
 
 const PopUpTips = (props: Props) => {
-  const {title, content, btnLeftText, btnRtText, callback} = props;
+  const {title, content, btnLeftText, btnRtText, visible, callback} = props;
   return (
-    <View style={styles.popupWrapper}>
-      <View style={styles.wrapper}>
-        <View style={styles.iconWrapper}>
-          <FontAwesomeIcon
-            size={40}
-            icon={faExclamationCircle}
-            color={'rgb(233, 189, 140)'}
-          />
-        </View>
-        <View style={styles.titleWrapper}>
-          <Text style={styles.titleText}>{title}</Text>
-        </View>
-        <View style={styles.contentWrapper}>
-          <Text style={styles.contentText}>{content}</Text>
-        </View>
-        <View style={styles.btnWrapper}>
-          <TouchableOpacity onPress={callback} style={styles.totalWidth}>
-            <View style={styles.btnItemWrapper}>
-              <Text style={styles.btnText}>{btnLeftText}</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={callback} style={styles.totalWidth}>
-            <View style={styles.btnItemWrapper}>
-              <Text style={styles.btnText}>{btnRtText}</Text>
-            </View>
-          </TouchableOpacity>
+    <Modal isVisible={visible}>
+      <View style={styles.popupWrapper}>
+        <View style={styles.wrapper}>
+          <View style={styles.iconWrapper}>
+            <FontAwesomeIcon
+              size={40}
+              icon={faExclamationCircle}
+              color={'rgb(233, 189, 140)'}
+            />
+          </View>
+          <View style={styles.titleWrapper}>
+            <Text style={styles.titleText}>{title}</Text>
+          </View>
+          <View style={styles.contentWrapper}>
+            <Text style={styles.contentText}>{content}</Text>
+          </View>
+          <View style={styles.btnWrapper}>
+            <TouchableOpacity onPress={callback} style={styles.totalWidth}>
+              <View style={styles.btnItemWrapper}>
+                <Text style={styles.btnText}>{btnLeftText}</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={callback} style={styles.totalWidth}>
+              <View style={styles.btnItemWrapper}>
+                <Text style={styles.btnText}>{btnRtText}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </Modal>
   );
 };
 
