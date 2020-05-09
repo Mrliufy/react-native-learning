@@ -401,6 +401,7 @@ const Login = () => {
           btnLeftText="Comfirm"
           btnRtText="Cancle"
           callback={tipsCallback}
+          visible={popupIndex !== -1}
         />
       </Animated.View>
     </TouchableOpacity>
